@@ -1,0 +1,11 @@
+<h1>Issues</h1>
+
+<div class="issues">
+    {{#each issues}}
+        <a href="/issues/issue/{{_id}}">Issue ID: {{_id}}</a>
+    {{/each}}
+</div>
+
+<a href="/issues/new">
+    <button>New Issue</button>
+</a>
