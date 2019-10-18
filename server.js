@@ -4,7 +4,7 @@ const app = express()
 const methodOverride = require('method-override')
 
 
-const { issueTrackerRouter } = require('./controllers/issuescontroller.js')
+const { userTrackerRouter } = require('./controllers/userscontroller.js')
 
 
 app.use(express.urlencoded({extended: true}))
@@ -17,7 +17,7 @@ app.use(express.static(__dirname+"/public"))
 
 app.set('view engine', 'hbs')
 
-app.use('/', issueTrackerRouter)
+app.use('/', userTrackerRouter)
 
 const PORT = process.env.PORT || 3000 
 
