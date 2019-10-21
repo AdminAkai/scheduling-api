@@ -1,9 +1,15 @@
 
 const express = require('express')
+const jwt = require('jsonwebtoken')
 
 const userTrackerApi = require('../models/usermodel.js')
 
 const userTrackerRouter = express.Router()
+
+userTrackerRouter.get('/', (req, res) => {
+  res.render('users')
+})
+
 
 userTrackerRouter.get('/login', (req, res) => {
     res.render('login')
