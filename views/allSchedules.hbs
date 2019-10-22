@@ -1,6 +1,6 @@
 <div class="dashboard">
-{{#if currentDashboard}}
-  {{#each currentDashboard}}
+{{#if allSchedules}}
+  {{#each allSchedules}}
   <div class="schedule">
     <h4>Description</h4>
     <p>{{description}}</p>
@@ -10,11 +10,12 @@
     <p>{{scheduledBy}}</p>
     <h4>Scheduled To:</h4>
     <p>{{scheduledTo}}</p>
-	<a href="/schedule/edit/{{_id}}">
+	<a href="/schedule/{{_id}}">
     <button>Edit Schedule</button>
 	</a>
-	<a href="/schedule/delete/{{_id}}">
-    <button>Delete Schedule</button>
+    <form method="POST" action="/schedule/delete/{{_id}}?_method=DELETE" class="form">
+        <input type="submit" value="Delete Schedule" class="submit"/>
+    </form>
 	</a>
   </div>
   {{/each}}

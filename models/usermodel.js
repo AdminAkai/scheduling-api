@@ -65,6 +65,10 @@ const getAllUsers = () => {
   return UserCollection.find()
 }
 
+const getSpecificUser = (username) => {
+  return UserCollection.find({username: username})
+}
+
 const getUser = (id) => {
   return UserCollection.findById({_id: id})
 }
@@ -148,6 +152,7 @@ module.exports = {
   updateSchedule,
   deleteSchedule,
   getAllUsers,
+  getSpecificUser,
   getUser,
   addNewUser,
   updateUser,
