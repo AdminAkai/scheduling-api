@@ -10,10 +10,10 @@
     <p>{{scheduledBy}}</p>
     <h4>Scheduled To:</h4>
     <p>{{scheduledTo}}</p>
-	<a href="/">
+	<a href="/schedule/edit/{{_id}}">
     <button>Edit Schedule</button>
 	</a>
-	<a href="/">
+	<a href="/schedule/delete/{{_id}}">
     <button>Delete Schedule</button>
 	</a>
   </div>
@@ -22,7 +22,7 @@
 <h4>Nothing scheduled</h4>
 {{/if}}
 
-<a href="/">
+<a href="/dashboard/admin/create-schedule/{{currentUser._id}}">
     <button>Create Schedule</button>
 </a>
 
