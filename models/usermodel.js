@@ -39,7 +39,7 @@ const SchedSchema = new mongoose.Schema({
     required: true,
   },
   scheduledBy: mongoose.ObjectId,
-  scheduledTo: mongoose.Types.ObjectId,
+  scheduledTo: mongoose.ObjectId,
 })
 
 const UserCollection = mongoose.model('Users', UserSchema)
@@ -115,7 +115,7 @@ const getAllSchedules = () => {
 }
 
 const getUserSchedules = (id) => {
-  return ScheduleCollection.findById({scheduledTo: id})
+  return ScheduleCollection.find({scheduledTo: id})
 }
 
 const getSchedule = (id) => {
