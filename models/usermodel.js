@@ -9,7 +9,6 @@ const UserSchema = new mongoose.Schema({
   password: {
     type: String,
     required: true,
-    unique: true,
   },
   email: {
     type: String,
@@ -39,42 +38,22 @@ const SchedSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  scheduledBy: {
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-  }, 
-  scheduledTo: { 
-    type: mongoose.Schema.Types.ObjectId,
-    required: true,
-  }
+  scheduledBy: mongoose.ObjectId,
+  scheduledTo: mongoose.Types.ObjectId,
 })
 
 const UserCollection = mongoose.model('Users', UserSchema)
 const PersonCollection = mongoose.model('Person', PersonSchema)
 const ScheduleCollection = mongoose.model('Schedule', SchedSchema)
 
-//format of token
-//authorization: bearer <Access-token>
-
-//Verify token
-function verifyToken(req,res,next) {
-  // get auth header value
-  const bearerHeader = req.headers['authorization']
-  // check if bearer is undefined
-  if (typeof(bearerHeader) !== 'undefined') {
-      // split at the space
-      const bearer = bearerHeader.split(' ')
-      // get token from array
-      const bearerToken = bearer[1]
-      // set token
-      req.token = bearerToken
-      // next middleware
-      next()
-  } else {
-      // forbidden
-      res.sendStatus(403)
-  }
+const admin = {
+  username: 'admin',
+  password: 'admin',
+  email: 'admin@gmail.com',
+  isAdmin: true
 }
+
+UserCollection.create(admin)
 
 //user model functions
 const getAllUsers = () => {
@@ -86,7 +65,11 @@ const getUser = (id) => {
 }
 
 const addNewUser = (newUser) => {
-  return UserCollection.create(newUser)
+  // if (newUser.username !== UserCollection.find()) {
+    return UserCollection.create(newUser)
+  // } else {
+  //   return 0
+  // }
 }
 
 const updateUser = (id, updatedUser) => {
@@ -97,11 +80,12 @@ const deleteUser = (id) => {
   return UserCollection.deleteOne({_id: id})
 }
 
-const verifyAuth = (user) => {
-  const currentUser = UserCollection.find({'username': user.username})
-  if (password === currentUser.password) {
-    return currentUser
-  }
+const verifyAuth = (username, password) => {
+  return UserCollection.findOne({username: username}).then((currentUser) => {
+    if (password === currentUser.password) {
+      return currentUser
+    }
+  })
 }
 
 //person model functions
@@ -130,6 +114,10 @@ const getAllSchedules = () => {
   return ScheduleCollection.find()
 }
 
+const getUserSchedules = (id) => {
+  return ScheduleCollection.findById({scheduledTo: id})
+}
+
 const getSchedule = (id) => {
   return ScheduleCollection.findById({_id: id})
 }
@@ -149,6 +137,7 @@ const deleteSchedule = (id) => {
 module.exports = {
   verifyAuth,
   getAllSchedules,
+  getUserSchedules,
   getSchedule,
   addNewSchedule,
   updateSchedule,

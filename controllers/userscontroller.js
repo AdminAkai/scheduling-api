@@ -10,23 +10,39 @@ userTrackerRouter.get('/', (req,res) => {
   res.render('login')
 })
 
+
+
 userTrackerRouter.post('/users/create', (req,res) => {
+  console.log(req.body)
   userTrackerApi.addNewUser(req.body).then((newuser) => {
     jwt.sign({newuser: newuser}, 'secretkey', (err, token) => {
+      // res.redirect('/')
+      console.log(newuser)
+      console.log(token)
       res.redirect('/')
     })
   })
 })
 
-userTrackerRouter.head('/dashboard', verifyToken, (req, res) => {
-  userTrackerApi.verifyAuth(req.body).then((currentUser) => {
-    jwt.verify(req.token, 'secretkey', (err, authData) => {
-      if (err) {
-          res.sendStatus(403)
-      } else {
-          res.render('dashboard')
-      }
-    })  
+userTrackerRouter.get('/dashboard/:id', (req,res) => {
+  userTrackerApi.getUserSchedules(req.params.id).then((currentDashboard) => {
+    res.render('currentschedule', currentDashboard)
+  })
+})
+
+userTrackerRouter.post('/dashboard', (req, res) => {
+  console.log(req.body)
+  // verifyToken(req.headers).then((token) => {
+  //   jwt.verify(token, 'secretkey', (err, authData) => {
+  //     if (err) {
+  //         res.sendStatus(403)
+  //     } else {
+  //         res.render('dashboard')
+  //     }
+  //   })  
+  // })
+  userTrackerApi.verifyAuth(req.body.username, req.body.password).then((currentUser) => {
+    res.redirect(`/dashboard/${currentUser._id}`)
   })
 })
 
@@ -46,7 +62,8 @@ function verifyToken(req,res,next) {
       // set token
       req.token = bearerToken
       // next middleware
-      next()
+      // next()
+      return req.token
   } else {
       // forbidden
       res.sendStatus(403)
