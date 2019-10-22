@@ -4,14 +4,20 @@ const UserSchema = new mongoose.Schema({
   username: {
     type: String,
     required: true,
+    unique: true,
   },
   password: {
     type: String,
     required: true,
+    unique: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
   },
   isAdmin: { 
     type: Boolean,
-    required: true,
   }
 })
 
@@ -47,6 +53,29 @@ const UserCollection = mongoose.model('Users', UserSchema)
 const PersonCollection = mongoose.model('Person', PersonSchema)
 const ScheduleCollection = mongoose.model('Schedule', SchedSchema)
 
+//format of token
+//authorization: bearer <Access-token>
+
+//Verify token
+function verifyToken(req,res,next) {
+  // get auth header value
+  const bearerHeader = req.headers['authorization']
+  // check if bearer is undefined
+  if (typeof(bearerHeader) !== 'undefined') {
+      // split at the space
+      const bearer = bearerHeader.split(' ')
+      // get token from array
+      const bearerToken = bearer[1]
+      // set token
+      req.token = bearerToken
+      // next middleware
+      next()
+  } else {
+      // forbidden
+      res.sendStatus(403)
+  }
+}
+
 //user model functions
 const getAllUsers = () => {
   return UserCollection.find()
@@ -66,6 +95,13 @@ const updateUser = (id, updatedUser) => {
 
 const deleteUser = (id) => {
   return UserCollection.deleteOne({_id: id})
+}
+
+const verifyAuth = (user) => {
+  const currentUser = UserCollection.find({'username': user.username})
+  if (password === currentUser.password) {
+    return currentUser
+  }
 }
 
 //person model functions
@@ -111,6 +147,7 @@ const deleteSchedule = (id) => {
 }
 
 module.exports = {
+  verifyAuth,
   getAllSchedules,
   getSchedule,
   addNewSchedule,

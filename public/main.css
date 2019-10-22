@@ -13,8 +13,16 @@ html {
 body {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     flex-direction: row;
+}
+
+.login {
+    margin: 20px;
+}
+
+.sign-up {
+    margin: 20px;
 }
 
 .form {

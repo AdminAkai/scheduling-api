@@ -1,14 +1,25 @@
+<div class="login">
+<form method="POST" action="/dashboard?_method=HEAD" class="form">
+  <h4>Username</h4>
+  <input type="text" name="username" required="true"/>
+  <h4>Password</h4>
+  <input type="password" name="password"/>
+  <input type="submit" class="submit"/>
+</form>
+</div>
 
-<form method="POST" action="/logins/create" class="form">
+<div class="sign-up">
+<form method="POST" action="/users/create" class="form">
   <h4>Username</h4>
   <input type="text" name="username" required="true"/>
   <h4>Email</h4>
   <input type="text" name="email" required="true"/>
   <h4>Password</h4>
   <input type="password" name="password"/>
-  <input type="submit" value="Create Profile" class="submit"/>
+  <input type="submit" value="Create Account" class="submit"/>
 </form>
+</div>
 
-<a href="/logins">
+{{!-- <a href="/logins">
     <button>Return to Dashboard</button>
-</a>
+</a> --}}
