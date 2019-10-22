@@ -15,12 +15,7 @@ userTrackerRouter.get('/', (req,res) => {
 userTrackerRouter.post('/users/create', (req,res) => {
   console.log(req.body)
   userTrackerApi.addNewUser(req.body).then((newuser) => {
-    jwt.sign({newuser: newuser}, 'secretkey', (err, token) => {
-      // res.redirect('/')
-      console.log(newuser)
-      console.log(token)
-      res.redirect('/')
-    })
+    res.redirect('/')
   })
 })
 
@@ -32,7 +27,9 @@ userTrackerRouter.get('/dashboard/:id', (req,res) => {
 
 userTrackerRouter.get('/dashboard/admin/:id', (req,res) => {
   userTrackerApi.getUser(req.params.id).then((currentUser) => {
+    console.log(currentUser)
     userTrackerApi.getAllUsers().then((allUsers) => {
+      console.log(allUsers)
       res.render('createschedule', {currentUser, allUsers})
     })
   })
@@ -40,19 +37,9 @@ userTrackerRouter.get('/dashboard/admin/:id', (req,res) => {
 
 userTrackerRouter.post('/dashboard', (req, res) => {
   console.log(req.body)
-  // verifyToken(req.headers).then((token) => {
-  //   jwt.verify(token, 'secretkey', (err, authData) => {
-  //     if (err) {
-  //         res.sendStatus(403)
-  //     } else {
-  //         res.render('dashboard')
-  //     }
-  //   })  
-  // })
   userTrackerApi.verifyAuth(req.body.username, req.body.password).then((currentUser) => {
     if (req.body.username === 'admin') {
-      userTrackerApi.getUserSchedules(req.body._i)
-      res.render('createschedule', currentUser)
+      res.redirect(`/dashboard/admin/${currentUser._id}`)
     } else {
       res.redirect(`/dashboard/${currentUser._id}`)
     }
@@ -60,29 +47,12 @@ userTrackerRouter.post('/dashboard', (req, res) => {
 })
 
 
-//format of token
-//authorization: bearer <Access-token>
+userTrackerRouter.post('/users/create', (req,res) => {
+  userTrackerApi.addNewUser(req.body).then((newuser) => {
+    res.redirect(`/users/user/${newuser._id}`)
+  })
+})
 
-//Verify token
-function verifyToken(req,res,next) {
-  // get auth header value
-  const bearerHeader = req.headers['authorization']
-  // check if bearer is undefined
-  if (typeof(bearerHeader) !== 'undefined') {
-      // split at the space
-      const bearer = bearerHeader.split(' ')
-      // get token from array
-      const bearerToken = bearer[1]
-      // set token
-      req.token = bearerToken
-      // next middleware
-      // next()
-      return req.token
-  } else {
-      // forbidden
-      res.sendStatus(403)
-  }
-}
 
 
 // userTrackerRouter.get('/', (req, res) => {

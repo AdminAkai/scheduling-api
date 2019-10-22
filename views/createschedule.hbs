@@ -1,7 +1,8 @@
 <div class="create-schedule">
 <form method="POST" action="/schedule/create" class="form">
   <h4>Description:</h4>
-  <textarea name="description" required="true"/>
+  <textarea name="description" required="true" rows="5" cols="50"/>
+  </textarea>
   <h4>dateScheduled:</h4>
   <input type="date" name="dateScheduled" required="true"/>
   <h4>scheduledBy:</h4>
@@ -9,9 +10,13 @@
   <h4>Scheduled To:</h4>
   <select name="scheduledTo" required="true">
     {{#each allUsers}}
-      <option value="{{allUsers.username}}">{{allUsers.username}}</option>
+      <option value="{{username}}">{{username}}</option>
     {{/each}}
   </select>
-  <input type="submit" value="Create Profile" class="submit"/>
+  <input type="submit" value="Create Schedule" class="submit"/>
 </form>
 </div>
+
+<a href="/">
+    <button>Logout</button>
+</a>

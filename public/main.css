@@ -35,6 +35,11 @@ body {
     margin-bottom: 20px;
 }
 
+.dashboard {
+    display: flex;
+    flex-direction: column;
+}
+
 #issue-options {
     display: flex;
     flex-direction: column;
