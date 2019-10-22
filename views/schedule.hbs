@@ -1,27 +1,28 @@
   <div class="schedule">
     <h4>Description</h4>
-    <p>{{description}}</p>
+    <p>{{newSchedule.description}}</p>
     <h4>Date Scheduled</h4>
-    <p>{{dateScheduled}}</p>
+    <p>{{newSchedule.dateScheduled}}</p>
     <h4>Scheduled By:</h4>
-    <p>{{scheduledBy.username}}</p>
+    <p>{{newSchedule.scheduledBy.username}}</p>
     <h4>Scheduled To:</h4>
-    <p>{{scheduledTo.username}}</p>
+    <p>{{newSchedule.scheduledTo.username}}</p>
+    <a href="/">
+    <button>Logout</button>
+    </a>        
+    <div class="options">
+    <a href="/schedule/{{newSchedule._id}}">
+        <button>Edit Schedule</button>
+    </a>
+    </div>
+
+    <a href="/dashboard/{{newSchedule.scheduledBy}}">
+        <button>Back to Dashboard</button>
+    </a>
+
+    <form action="/schedule/delete/{{_id}}?_method=DELETE" method="POST">
+        <input type="submit" value="Delete Schedule"/>
+    </form>
+    </div>
   </div>
 
-<a href="/">
-    <button>Logout</button>
-</a>        
-
-<a href="/schedule/{{_id}}">
-    <button>Edit Schedule</button>
-</a>
-</div>
-
-<a href="/dashboard/admin/{{_id}}">
-    <button>Back to Dashboard</button>
-</a>
-
-<form action="/schedule/delete/{{_id}}?_method=DELETE" method="POST">
-    <input type="submit" value="Delete Schedule"/>
-</form>

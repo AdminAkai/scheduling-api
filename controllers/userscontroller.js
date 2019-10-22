@@ -10,11 +10,7 @@ userTrackerRouter.get('/', (req,res) => {
 
 userTrackerRouter.post('/dashboard', (req, res) => {
   userTrackerApi.verifyAuth(req.body.username, req.body.password).then((currentUser) => {
-    // if (req.body.username === 'admin') {
-    //   res.redirect(`/dashboard/admin/${currentUser._id}`)
-    // } else {
-      res.redirect(`/dashboard/${currentUser._id}`)
-    // }
+    res.redirect(`/dashboard/${currentUser._id}`)
   })
 })
 
@@ -31,11 +27,9 @@ userTrackerRouter.get('/dashboard/:id', (req,res) => {
   })
 })
 
-userTrackerRouter.get('/dashboard/admin/create-schedule/:id', (req,res) => {
+userTrackerRouter.get('/dashboard/create/:id', (req,res) => {
   userTrackerApi.getUser(req.params.id).then((currentUser) => {
-    console.log(currentUser)
     userTrackerApi.getAllUsers().then((allUsers) => {
-      console.log(allUsers)
       res.render('createschedule', {currentUser, allUsers})
     })
   })
@@ -43,7 +37,10 @@ userTrackerRouter.get('/dashboard/admin/create-schedule/:id', (req,res) => {
 
 userTrackerRouter.post('/schedule/create', (req,res) => {
   userTrackerApi.addNewSchedule(req.body).then((newSchedule) => {
-    res.render('schedule', newSchedule)
+    userTrackerApi.getSpecificUser('admin').then((currentUser) => {
+      console.log(`current user is: ${currentUser}`)
+      res.render('schedule', {newSchedule, currentUser})
+    })
   })
 })
 
