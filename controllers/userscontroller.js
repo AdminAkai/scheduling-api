@@ -26,7 +26,15 @@ userTrackerRouter.post('/users/create', (req,res) => {
 
 userTrackerRouter.get('/dashboard/:id', (req,res) => {
   userTrackerApi.getUserSchedules(req.params.id).then((currentDashboard) => {
-    res.render('currentschedule', currentDashboard)
+    res.render('dashboard', currentDashboard)
+  })
+})
+
+userTrackerRouter.get('/dashboard/admin/:id', (req,res) => {
+  userTrackerApi.getUser(req.params.id).then((currentUser) => {
+    userTrackerApi.getAllUsers().then((allUsers) => {
+      res.render('createschedule', {currentUser, allUsers})
+    })
   })
 })
 
@@ -42,9 +50,15 @@ userTrackerRouter.post('/dashboard', (req, res) => {
   //   })  
   // })
   userTrackerApi.verifyAuth(req.body.username, req.body.password).then((currentUser) => {
-    res.redirect(`/dashboard/${currentUser._id}`)
+    if (req.body.username === 'admin') {
+      userTrackerApi.getUserSchedules(req.body._i)
+      res.render('createschedule', currentUser)
+    } else {
+      res.redirect(`/dashboard/${currentUser._id}`)
+    }
   })
 })
+
 
 //format of token
 //authorization: bearer <Access-token>

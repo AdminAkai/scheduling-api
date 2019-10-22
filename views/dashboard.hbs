@@ -1,12 +1,20 @@
-<div>
-<form method="POST" action="/schedule/create" class="form">
-  <h4>Description</h4>
-  <input type="text" name="description" required="true"/>
-  <h4>dateScheduled</h4>
-  <input type="date" name="dateScheduled" required="true"/>
-  <input type="submit" value="Create Profile" class="submit"/>
-</form>
-</div>
+{{#if currentDashboard}}
+  {{#each currentDashboard}}
+  <div class="schedule">
+    <h4>Description</h4>
+    <p>{{description}}</p>
+    <h4>Date Scheduled</h4>
+    <p>{{dateScheduled}}</p>
+    <h4>Scheduled By:</h4>
+    <p>{{scheduledBy}}</p>
+    <h4>Scheduled To:</h4>
+    <p>{{scheduledTo}}</p>
+  </div>
+  {{/each}}
+{{else}}
+<h4>Nothing scheduled</h4>
+{{/if}}
+
 <a href="/">
     <button>Return to login</button>
 </a>
