@@ -47,9 +47,9 @@ userTrackerRouter.post('/dashboard', (req, res) => {
 })
 
 
-userTrackerRouter.post('/users/create', (req,res) => {
-  userTrackerApi.addNewUser(req.body).then((newuser) => {
-    res.redirect(`/users/user/${newuser._id}`)
+userTrackerRouter.post('/schedule/create', (req,res) => {
+  userTrackerApi.addNewSchedule(req.body).then((addNewSchedule) => {
+    res.render('')
   })
 })
 

@@ -10,13 +10,22 @@
     <p>{{scheduledBy}}</p>
     <h4>Scheduled To:</h4>
     <p>{{scheduledTo}}</p>
+	<a href="/">
+    <button>Edit Schedule</button>
+	</a>
+	<a href="/">
+    <button>Delete Schedule</button>
+	</a>
   </div>
   {{/each}}
 {{else}}
 <h4>Nothing scheduled</h4>
 {{/if}}
 
-<a href="/"
+<a href="/">
+    <button>Create Schedule</button>
+</a>
+
 
 <a href="/">
     <button>Logout</button>
