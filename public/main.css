@@ -1,14 +1,12 @@
+* {
+    font-family: 'Dosis', sans-serif;
+    letter-spacing: 0.08em;
+}
+
 html {
     width: 100vw;
     height: 100vh;
 }
-
-/* #description-box {
-    height: 100px;
-    width: 150;
-    text-align: left;
-    vertical-align: text-top;
-} */
 
 body {
     display: flex;
