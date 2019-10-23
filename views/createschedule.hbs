@@ -1,5 +1,32 @@
 <div class="create-schedule">
 <form method="POST" action="/schedule/create" class="form">
+<h4>Job</h4>
+  <select name="description" required="true">
+    {{#each allJobs}}
+      <option value="{{description}}">{{job}}</option>
+    {{/each}}
+  </select>
+  <h4>dateScheduled:</h4>
+  <input type="date" min="" max="" id="datePicker" name="dateScheduled" required="true"/>
+  <h4>scheduledBy:</h4>
+  <input type="text" name="scheduledBy" required="true" value="{{currentUser.id}}" readonly/>
+  <h4>Scheduled To:</h4>
+  <select name="scheduledTo" required="true">
+    {{#each allUsers}}
+      <option value="{{_id}}">{{username}}</option>
+    {{/each}}
+  </select>
+  <input type="submit" value="Create Schedule" class="submit"/>
+</form>
+</div>
+
+<a href="/">
+    <button>Logout</button>
+</a>
+
+
+{{!-- <div class="create-schedule">
+<form method="POST" action="/schedule/create" class="form">
   <h4>Description:</h4>
   <textarea name="description" required="true" rows="5" cols="50"/></textarea>
   <h4>dateScheduled:</h4>
@@ -18,4 +45,4 @@
 
 <a href="/">
     <button>Logout</button>
-</a>
+</a> --}}

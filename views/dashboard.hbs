@@ -9,12 +9,16 @@
     <h4>Scheduled By:</h4>
     <p>{{scheduledBy}}</p>
     <h4>Scheduled To:</h4>
-    <p>{{scheduledTo}}</p>
+    <p>{{currentUser.username}}</p>
   </div>
   {{/each}}
 {{else}}
 <h4>Nothing scheduled</h4>
 {{/if}}
+
+<a href="/users/edit/{{currentUser._id}}">
+  <button>Edit Profile</button>
+</a>
 
 <a href="/">
     <button>Logout</button>
