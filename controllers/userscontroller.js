@@ -30,6 +30,7 @@ userTrackerRouter.put('/users/edit/:id', (req,res) => {
   })
 })
 
+// delete user
 userTrackerRouter.delete('/users/delete/:id', (req,res) => {
   userTrackerApi.deleteUser(req.params.id).then((deleteduser) => {
     res.redirect('/')  
@@ -126,6 +127,20 @@ userTrackerRouter.post('/job/create', (req,res) => {
     userTrackerApi.getAdmin(true).then((currentUser) => {
       res.render('job', {newJob, currentUser})
     })
+  })
+})
+
+// edit job
+userTrackerRouter.put('/job/edit/:id', (req,res) => {
+  userTrackerApi.updateJob(req.params.id, req.body).then((updatejob) => {
+    res.redirect(`/dashboard/${req.params.id}`)
+  })
+})
+
+// delete job
+userTrackerRouter.delete('/job/delete/:id', (req,res) => {
+  userTrackerApi.deleteJob(req.params.id).then((deletedJob) => {
+    res.redirect('/')  
   })
 })
 

@@ -1,4 +1,4 @@
-  <div class="schedule">
+  <div class="job">
     <h4>Job</h4>
     <p>{{newJob.job}}</p>
     <h4>Description</h4>
@@ -7,16 +7,16 @@
     <button>Logout</button>
     </a>        
     <div class="options">
-    <a href="/schedule/{{newSchedule._id}}">
-        <button>Edit Schedule</button>
+    <a href="/job/{{newJob._id}}">
+        <button>Edit Job</button>
     </a>
     </div>
 
-    <a href="/dashboard/{{newSchedule.scheduledBy}}">
+    <a href="/dashboard/{{currentUser._id}}">
         <button>Back to Dashboard</button>
     </a>
 
-    <form action="/schedule/delete/{{newJob._id}}?_method=DELETE" method="POST">
+    <form action="/job/delete/{{newJob._id}}?_method=DELETE" method="POST">
         <input type="submit" value="Delete Schedule"/>
     </form>
     </div>
