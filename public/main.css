@@ -13,8 +13,8 @@ body {
     justify-content: center;
     align-items: flex-start;
     flex-direction: row;
-    height: 100%;
-    width: 100%;
+    height: 98%;
+    width: 98%;
     background-color: #00a2ff;
 }
 
@@ -30,8 +30,8 @@ body {
 .all-schedules {
     display: flex;
     flex-direction: row;
-    width: 100%;
-    height: 100%;
+    width: 98%;
+    height: 98%;
 }
 
 .schedular {
@@ -54,6 +54,17 @@ body {
 
 .email {
     margin-top: -20px;
+}
+
+.subtext {
+    margin-top: -20px;
+}
+
+.options {
+    position: absolute;
+    display: flex;
+    justify-content: flex-end;
+    width: 98%;
 }
 
 .admin {

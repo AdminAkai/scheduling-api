@@ -1,28 +1,5 @@
 <div class="all-schedules">
-    <div class="dashboard">
-        {{#if allSchedules}}
-            {{#each allSchedules}}
-                <div class="schedule form">
-                    <h4>Description</h4>
-                    <p>{{description}}</p>
-                    <h4>Date Scheduled</h4>
-                    <p>{{dateScheduled}}</p>
-                    <h4>Scheduled By:</h4>
-                    <p>{{scheduledBy}}</p>
-                    <h4>Scheduled To:</h4>
-                    <p>{{scheduledTo}}</p>
-                    <a href="/schedule/{{_id}}">
-                    <button>Edit Schedule</button>
-                    </a>
-                    <form method="POST" action="/schedule/delete/{{_id}}?_method=DELETE">
-                        <input type="submit" value="Delete Schedule" class="submit"/>
-                    </form>
-                    </a>
-                </div>
-            {{/each}}
-        {{else}}
-        <h4>Nothing scheduled</h4>
-        {{/if}}
+    <div class="options">
     <a href="/dashboard/create/{{currentUser._id}}">
         <button>Create Schedule</button>
     </a>
@@ -38,5 +15,32 @@
     <a href="/">
         <button>Logout</button>
     </a>
+    </div>
+        <div class="dashboard">
+        {{#if allSchedules}}
+            {{#each allSchedules}}
+                <div class="schedule form">
+                    <h4>Job:</h4>
+                    <p class="subtext">{{job}}</p>
+                    <h4>Additional Notes:</h4>
+                    <p class="subtext">{{description}}</p>
+                    <h4>Date Scheduled:</h4>
+                    <p class="subtext">{{dateScheduled}}</p>
+                    <h4>Scheduled By:</h4>
+                    <p class="subtext">{{scheduledBy}}</p>
+                    <h4>Scheduled To:</h4>
+                    <p class="subtext">{{scheduledTo}}</p>
+                    <a href="/schedule/{{_id}}">
+                    <button>Edit Schedule</button>
+                    </a>
+                    <form method="POST" action="/schedule/delete/{{_id}}?_method=DELETE">
+                        <input type="submit" value="Delete Schedule" class="submit"/>
+                    </form>
+                    </a>
+                </div>
+            {{/each}}
+        {{else}}
+        <h4>Nothing scheduled</h4>
+        {{/if}}
     </div>
 </div>
