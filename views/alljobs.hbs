@@ -23,18 +23,13 @@
         {{else}}
         <h4>Nothing scheduled</h4>
         {{/if}}
-    <a href="/dashboard/create/{{currentUser._id}}">
-        <button>Create Schedule</button>
-    </a>
     <a href="/dashboard/create-job/{{currentUser._id}}">
         <button>Create Job</button>
     </a>
-    <a href="/dashboard/view-jobs/{{currentUser._id}}">
-        <button>View Jobs</button>
+    <a href="/dashboard/{{currentUser._id}}">
+        <button>Back to Dashboard</button>
     </a>
-    <a href="/users/edit/{{currentUser._id}}">
-        <button>Edit Profile</button>
-    </a>
+
     <a href="/">
         <button>Logout</button>
     </a>

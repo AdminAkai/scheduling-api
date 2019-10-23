@@ -11,7 +11,7 @@
   <input type="date" min="" max="" id="datePicker" name="dateScheduled" required="true"/>
   <h4>scheduledBy:</h4>
   <p>{{currentUser.username}}</p>
-  <input type="text" name="scheduledBy" required="true" value="{{currentUser.id}}" readonly class="hide"/>
+  <input type="text" name="scheduledBy" required="true" value="{{currentUser._id}}" readonly class="hide"/>
   <h4>Scheduled To:</h4>
   <select name="scheduledTo" required="true">
     {{#each allUsers}}
@@ -21,6 +21,11 @@
   <input type="submit" value="Create Schedule" class="submit"/>
 </form>
 </div>
+
+<a href="/dashboard/{{currentUser._id}}">
+  <button>Back to Dashboard</button>
+</a>
+
 
 <a href="/">
     <button>Logout</button>
