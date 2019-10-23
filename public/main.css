@@ -15,6 +15,7 @@ body {
     flex-direction: row;
     height: 100%;
     width: 100%;
+    background-color: #00a2ff;
 }
 
 .hide {
@@ -28,17 +29,46 @@ body {
     height: 100%;
 }
 
+.schedular {
+    position: absolute;
+    font-size: 100px;
+    color: #ffffff;
+}
+
 .login {
     margin: 20px;
 }
 
-.sign-up {
-    margin: 20px;
+.username {
+    margin-top: -20px;
 }
+
+.password {
+    margin-top: -20px;
+}
+
+.email {
+    margin-top: -20px;
+}
+
+.admin {
+    margin-top: -20px;
+}
+
+.sign-up {
+    margin: 250px 20px 20px 100px;
+}
+
+.login {
+    margin: 250px 80px 20px 10px;
+}
+
 
 .form {
     display: flex;
     flex-direction: column;
+    padding: 20px 40px 20px 40px;
+    background-color: #ffffff;;
 }
 
 .submit {
@@ -49,4 +79,49 @@ body {
 .dashboard {
     display: flex;
     flex-direction: column;
+}
+
+@keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0);
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes fadeInUp {
+    from {
+        transform: translate3d(0,40px,0);
+    }
+
+    to {
+        transform: translate3d(0,0,0);
+        opacity: 1;
+    }
+}
+
+.animated {
+    animation-duration: 3s;
+    animation-fill-mode: both;
+    -webkit-animation-duration: 3s;
+    -webkit-animation-fill-mode: both;
+}
+
+.animatedFadeInUp {
+    opacity: 0;
+}
+
+.fadeInUp {
+    opacity: 0;
+    animation-name: fadeInUp;
+    -webkit-animation-name: fadeInUp;
+}
+
+.shadow {
+    -webkit-box-shadow: 7px 11px 4px 0px rgba(143,133,143,0.5);
+    -moz-box-shadow: 7px 11px 4px 0px rgba(143,133,143,0.5);
+    box-shadow: 7px 11px 4px 0px rgba(143,133,143,0.5);
 }

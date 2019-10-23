@@ -30,8 +30,6 @@ const JobSchema = new mongoose.Schema({
   }
 })
 
-
-
 const SchedSchema = new mongoose.Schema({
   job: {
     type: String,

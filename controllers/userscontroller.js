@@ -40,6 +40,11 @@ userTrackerRouter.delete('/users/delete/:id', (req,res) => {
 userTrackerRouter.post('/dashboard', (req, res) => {
   userTrackerApi.verifyAuth(req.body.username, req.body.password).then((currentUser) => {
     res.redirect(`/dashboard/${currentUser._id}`)
+  }).catch((err) => {
+    console.error(err.message)
+  }).then((resolved) => {
+    alert('Wrong username or password')
+    res.redirect('/')
   })
 })
 

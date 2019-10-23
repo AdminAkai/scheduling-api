@@ -1,23 +1,25 @@
+<h1 class="schedular">SCHEDUL&lambda;R</h1>
+
 <div class="login">
-<form method="POST" action="/dashboard" class="form">
+<form method="POST" action="/dashboard" class="form shadow">
   <h4>Username</h4>
-  <input type="text" name="username" required="true"/>
+  <input type="text" name="username" required="true" class="username"/>
   <h4>Password</h4>
-  <input type="password" name="password"/>
+  <input type="password" name="password" class="password"/>
   <input type="submit" class="submit"/>
 </form>
 </div>
 
 <div class="sign-up">
-<form method="POST" action="/users/create" class="form">
+<form method="POST" action="/users/create" class="form shadow">
   <h4>Username</h4>
-  <input type="text" name="username" required="true"/>
+  <input type="text" name="username" required="true" class="username"/>
   <h4>Email</h4>
-  <input type="text" name="email" required="true"/>
+  <input type="text" name="email" required="true" class="email"/>
   <h4>Password</h4>
-  <input type="password" name="password"/>
+  <input type="password" name="password" class="password"/>
   <h4>Admin</h4>
-  <select name="isAdmin" required="true">
+  <select name="isAdmin" required="true" class="admin">
       <option value="true">Yes</option>
       <option value="false">No</option>
   </select>  
