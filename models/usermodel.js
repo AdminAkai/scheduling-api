@@ -20,21 +20,23 @@ const UserSchema = new mongoose.Schema({
   }
 })
 
-const PersonSchema = new mongoose.Schema({
-  firstName: {
+const JobSchema = new mongoose.Schema({
+  job: {
     type: String,
     required: true,
   },
-  lastName: {
+  description: {
     type: String,
-    required: true,
-  },
-  description: String
+  }
 })
 
 
 
 const SchedSchema = new mongoose.Schema({
+  job: {
+    type: String,
+    required: true,
+  },
   description: {
     type: String,
     required: true,
@@ -48,7 +50,7 @@ const SchedSchema = new mongoose.Schema({
 })
 
 const UserCollection = mongoose.model('Users', UserSchema)
-const PersonCollection = mongoose.model('Person', PersonSchema)
+const JobCollection = mongoose.model('Job', JobSchema)
 const ScheduleCollection = mongoose.model('Schedule', SchedSchema)
 
 //user model functions
@@ -56,8 +58,8 @@ const getAllUsers = () => {
   return UserCollection.find()
 }
 
-const getSpecificUser = (username) => {
-  return UserCollection.find({username: username})
+const getAdmin = (admin) => {
+  return UserCollection.findOne({isAdmin: admin})
 }
 
 const getUser = (id) => {
@@ -88,25 +90,25 @@ const verifyAuth = (username, password) => {
   })
 }
 
-//person model functions
-const getAllPersons = () => {
-  return PersonCollection.find()
+//Job model functions
+const getAllJobs = () => {
+  return JobCollection.find()
 }
 
-const getPerson = (id) => {
-  return PersonCollection.findById({_id: id})
+const getJob = (id) => {
+  return JobCollection.findById({_id: id})
 }
 
-const addNewPerson = (newPerson) => {
-  return PersonCollection.create(newPerson)
+const addNewJob = (newJob) => {
+  return JobCollection.create(newJob)
 }
 
-const updatePerson = (id, updatedPerson) => {
-  return PersonCollection.updateOne({_id: id}, updatedPerson)
+const updateJob = (id, updatedJob) => {
+  return JobCollection.updateOne({_id: id}, updatedJob)
 } 
 
-const deletePerson = (id) => {
-  return PersonCollection.deleteOne({_id: id})
+const deleteJob = (id) => {
+  return JobCollection.deleteOne({_id: id})
 }
 
 //schedule model functions
@@ -143,14 +145,14 @@ module.exports = {
   updateSchedule,
   deleteSchedule,
   getAllUsers,
-  getSpecificUser,
+  getAdmin,
   getUser,
   addNewUser,
   updateUser,
   deleteUser,
-  getAllPersons,
-  getPerson,
-  addNewPerson,
-  updatePerson,
-  deletePerson
+  getAllJobs,
+  getJob,
+  addNewJob,
+  updateJob,
+  deleteJob
 }
