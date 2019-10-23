@@ -4,8 +4,23 @@ const userTrackerApi = require('../models/usermodel.js')
 
 const userTrackerRouter = express.Router()
 
+// login
 userTrackerRouter.get('/', (req,res) => {
   res.render('login')
+})
+
+
+// user authentication
+userTrackerRouter.post('/dashboard', (req, res) => {
+  userTrackerApi.verifyAuth(req.body.username, req.body.password).then((currentUser) => {
+    User = currentUser
+    console.log(`The current user is: ${User}`)
+    res.redirect(`/dashboard/${User._id}`)
+  }).catch((err) => {
+    console.error(err.message)
+  }).then((resolved) => {
+    res.redirect('/')
+  })
 })
 
 // create user
@@ -34,18 +49,6 @@ userTrackerRouter.put('/users/edit/:id', (req,res) => {
 userTrackerRouter.delete('/users/delete/:id', (req,res) => {
   userTrackerApi.deleteUser(req.params.id).then((deleteduser) => {
     res.redirect('/')  
-  })
-})
-
-// user authentication
-userTrackerRouter.post('/dashboard', (req, res) => {
-  userTrackerApi.verifyAuth(req.body.username, req.body.password).then((currentUser) => {
-    res.redirect(`/dashboard/${currentUser._id}`)
-  }).catch((err) => {
-    console.error(err.message)
-  }).then((resolved) => {
-    alert('Wrong username or password')
-    res.redirect('/')
   })
 })
 
@@ -130,17 +133,24 @@ userTrackerRouter.post('/job/create', (req,res) => {
   })
 })
 
+// edit job screen
+userTrackerRouter.get('/job/edit/:id', (req, res) => {
+  userTrackerApi.getJob(req.params.id).then((job) => {
+    res.render('editjob', job)
+  })
+})
+
 // edit job
-userTrackerRouter.put('/job/edit/:id', (req,res) => {
+userTrackerRouter.put('/job/:id', (req,res) => {
   userTrackerApi.updateJob(req.params.id, req.body).then((updatejob) => {
-    res.redirect(`/dashboard/${req.params.id}`)
+    res.redirect(`/dashboard/${User._id}`)
   })
 })
 
 // delete job
 userTrackerRouter.delete('/job/delete/:id', (req,res) => {
   userTrackerApi.deleteJob(req.params.id).then((deletedJob) => {
-    res.redirect('/')  
+    res.redirect(`/dashboard/${User._id}`)  
   })
 })
 

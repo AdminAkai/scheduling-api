@@ -18,6 +18,11 @@ body {
     background-color: #00a2ff;
 }
 
+.job-board {
+    display: flex;
+    flex-direction: row;
+}
+
 .hide {
     visibility: hidden;
  }

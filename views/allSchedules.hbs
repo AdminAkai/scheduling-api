@@ -2,7 +2,7 @@
     <div class="dashboard">
         {{#if allSchedules}}
             {{#each allSchedules}}
-                <div class="schedule">
+                <div class="schedule form">
                     <h4>Description</h4>
                     <p>{{description}}</p>
                     <h4>Date Scheduled</h4>
@@ -14,7 +14,7 @@
                     <a href="/schedule/{{_id}}">
                     <button>Edit Schedule</button>
                     </a>
-                    <form method="POST" action="/schedule/delete/{{_id}}?_method=DELETE" class="form">
+                    <form method="POST" action="/schedule/delete/{{_id}}?_method=DELETE">
                         <input type="submit" value="Delete Schedule" class="submit"/>
                     </form>
                     </a>

@@ -7,7 +7,7 @@
     <button>Logout</button>
     </a>        
     <div class="options">
-    <a href="/job/{{newJob._id}}">
+    <a href="/job/edit/{{newJob._id}}">
         <button>Edit Job</button>
     </a>
     </div>
@@ -17,7 +17,7 @@
     </a>
 
     <form action="/job/delete/{{newJob._id}}?_method=DELETE" method="POST">
-        <input type="submit" value="Delete Schedule"/>
+        <input type="submit" value="Delete Job"/>
     </form>
     </div>
   </div>

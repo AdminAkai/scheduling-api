@@ -2,7 +2,7 @@
     <div class="job-board">
         {{#if allJobs}}
             {{#each allJobs}}
-                <div class="jobs">
+                <div class="jobs" class="form">
                     <h4>Job</h4>
                     <p>{{job}}</p>
                     <h4>Description</h4>
@@ -10,14 +10,14 @@
                     <a href="/jobs/{{_id}}">
                         <button>Edit Jobs</button>
                     </a>
-                    <form method="POST" action="/job/delete/{{_id}}?_method=DELETE" class="form">
+                    <form method="POST" action="/job/delete/{{_id}}?_method=DELETE">
                         <input type="submit" value="Delete Job" class="submit"/>
                     </form>
                     </a>
                 </div>
             {{/each}}
         {{else}}
-        <h4>Nothing scheduled</h4>
+        <h4>No Jobs</h4>
         {{/if}}
     <a href="/dashboard/create-job/{{currentUser._id}}">
         <button>Create Job</button>
