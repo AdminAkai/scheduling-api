@@ -8,6 +8,13 @@ userTrackerRouter.get('/', (req,res) => {
   res.render('login')
 })
 
+userTrackerRouter.post('/users/create', (req,res) => {
+  console.log(req.body)
+  userTrackerApi.addNewUser(req.body).then((newuser) => {
+    res.redirect('/')
+  })
+})
+
 userTrackerRouter.post('/dashboard', (req, res) => {
   userTrackerApi.verifyAuth(req.body.username, req.body.password).then((currentUser) => {
     res.redirect(`/dashboard/${currentUser._id}`)
@@ -18,10 +25,11 @@ userTrackerRouter.get('/dashboard/:id', (req,res) => {
   userTrackerApi.getUserSchedules(req.params.id).then((currentDashboard) => {
     userTrackerApi.getAllSchedules().then((allSchedules) => {
       userTrackerApi.getUser(req.params.id).then((currentUser) => {
-        if (currentUser.username === 'admin') {
+        if (currentUser.isAdmin) {
           res.render('allSchedules', {allSchedules, currentUser})
+        } else {
+          res.render('dashboard', currentDashboard)
         }
-        res.render('dashboard', currentDashboard)
       })
     })
   })
@@ -38,16 +46,30 @@ userTrackerRouter.get('/dashboard/create/:id', (req,res) => {
 userTrackerRouter.post('/schedule/create', (req,res) => {
   userTrackerApi.addNewSchedule(req.body).then((newSchedule) => {
     userTrackerApi.getSpecificUser('admin').then((currentUser) => {
-      console.log(`current user is: ${currentUser}`)
       res.render('schedule', {newSchedule, currentUser})
     })
   })
 })
 
-// userTrackerRouter.post('/users/create', (req,res) => {
-//   console.log(req.body)
-//   userTrackerApi.addNewUser(req.body).then((newuser) => {
-//     res.redirect('/')
+userTrackerRouter.delete('/schedule/delete/:id', (req,res) => {
+  console.log(`request parameters: ${req.params.id}`)
+  userTrackerApi.deleteSchedule(req.params.id).then((deletedSchedule) => {
+      console.log(`schedule that was deleted: ${deletedSchedule}`)
+      userTrackerApi.getSpecificUser('admin').then((currentUser) => {
+        console.log(`current user: ${currentUser}`)
+        res.redirect(`/dashboard/${currentUser._id}`)
+      })
+  })
+})
+
+// userTrackerRouter.delete('/schedule/delete/:id', (req,res) => {
+//   userTrackerApi.deleteSchedule(req.params.id).then((deletedschedule) => {
+//     // userTrackerApi.getAllSchedules().then((allSchedules) => {
+//       userTrackerApi.getSpecificUser('admin').then((currentUser) => {
+//         // res.render('allSchedules', {allSchedules, currentUser})
+//         res.redirect(`/dashboard/${currentUser._id}`)
+//       })
+//     // })        
 //   })
 // })
 

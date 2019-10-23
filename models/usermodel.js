@@ -43,22 +43,13 @@ const SchedSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
-  scheduledBy: mongoose.ObjectId,
-  scheduledTo: mongoose.ObjectId,
+  scheduledBy: mongoose.Types.ObjectId,
+  scheduledTo: mongoose.Types.ObjectId,
 })
 
 const UserCollection = mongoose.model('Users', UserSchema)
 const PersonCollection = mongoose.model('Person', PersonSchema)
 const ScheduleCollection = mongoose.model('Schedule', SchedSchema)
-
-const admin = {
-  username: 'admin',
-  password: 'admin',
-  email: 'admin@gmail.com',
-  isAdmin: true
-}
-
-UserCollection.create(admin)
 
 //user model functions
 const getAllUsers = () => {
