@@ -1,5 +1,5 @@
 <div class="create-schedule">
-<form method="POST" action="/schedule/create" class="form animated animatedFadeInUp fadeInUp shadow">
+<form method="POST" action="/schedule/create/{{currentUser._id}}" class="form animated animatedFadeInUp fadeInUp shadow">
   <h4>Job</h4>
   <select name="job" required="true">
     {{#each allJobs}}

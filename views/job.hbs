@@ -11,10 +11,10 @@
   <p class="subtext">{{newJob.job}}</p>
   <h4>Description</h4>
   <p class="subtext">{{newJob.description}}</p>
-  <a href="/job/edit/{{newJob._id}}">
+  <a href="/job/edit/{{currentUser._id}}/{{newJob._id}}">
     <button class="submit">Edit Job</button>
   </a>
-  <form action="/job/delete/{{newJob._id}}?_method=DELETE" method="POST">
+  <form action="/job/delete/{{currentUser._id}}/{{newJob._id}}?_method=DELETE" method="POST">
     <input class="submit" type="submit" value="Delete Job"/>
   </form>
 </div>

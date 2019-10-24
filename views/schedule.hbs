@@ -1,5 +1,5 @@
 <div class="options">
-  <a href="/dashboard/{{newSchedule.scheduledBy}}">
+  <a href="/dashboard/{{currentUser._id}}">
     <button class="button">Back to Dashboard</button>
 </a>
 </div>      
@@ -11,13 +11,13 @@
   <h4>Date Scheduled:</h4>
   <p class="subtext">{{newSchedule.dateScheduled}}</p>
   <h4>Scheduled By:</h4>
-  <p class="subtext">{{newSchedule.scheduledBy}}</p>
+  <p class="subtext">{{currentUser.username}}</p>
   <h4>Scheduled To:</h4>
-  <p class="subtext">{{newSchedule.scheduledTo}}</p>
-  <a href="/schedule/edit/{{_id}}">
+  <p class="subtext">{{scheduledUser.username}}</p>
+  <a href="/schedule/edit/{{currentUser._id}}/{{newSchedule._id}}">
     <button class="submit">Edit Schedule</button>
   </a>
-  <form method="POST" action="/schedule/delete/{{_id}}?_method=DELETE">
+  <form method="POST" action="/schedule/delete/{{currentUser._id}}/{{newSchedule._id}}?_method=DELETE">
     <input type="submit" value="Delete Schedule" class="submit"/>
   </form>
 </a>

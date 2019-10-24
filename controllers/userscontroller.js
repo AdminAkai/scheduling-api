@@ -22,6 +22,22 @@ userTrackerRouter.post('/dashboard', (req, res) => {
   })
 })
 
+// display dashboard depending on user
+userTrackerRouter.get('/dashboard/:id', (req,res) => {
+  userTrackerApi.getAllSchedules().then((allSchedules) => {
+    userTrackerApi.getUserSchedules(req.params.id).then((currentDashboard) => {
+      userTrackerApi.getUser(req.params.id).then((currentUser) => {
+        if (currentUser.isAdmin) {
+          console.log(currentUser)
+          res.render('allSchedules', {allSchedules, currentUser})
+        } else {
+          res.render('dashboard', {currentDashboard, currentUser})
+        }
+      })
+    })
+  })
+})
+
 // create user
 userTrackerRouter.post('/users/create', (req,res) => {
   userTrackerApi.addNewUser(req.body).then((newuser) => {
@@ -50,26 +66,12 @@ userTrackerRouter.delete('/users/delete/:id', (req,res) => {
   })
 })
 
-// display dashboard depending on user
-userTrackerRouter.get('/dashboard/:id', (req,res) => {
-  userTrackerApi.getAllSchedules().then((allSchedules) => {
-    userTrackerApi.getUserSchedules(req.params.id).then((currentDashboard) => {
-      userTrackerApi.getUser(req.params.id).then((currentUser) => {
-        if (currentUser.isAdmin) {
-          res.render('allSchedules', {allSchedules, currentUser})
-        } else {
-          res.render('dashboard', {currentDashboard, currentUser})
-        }
-      })
-    })
-  })
-})
-
 // create schedule screen
-userTrackerRouter.get('/dashboard/create/:id', (req,res) => {
-  userTrackerApi.getUser(req.params.id).then((currentUser) => {
+userTrackerRouter.get('/dashboard/create/:userid', (req,res) => {
+  userTrackerApi.getUser(req.params.userid).then((currentUser) => {
     userTrackerApi.getAllUsers().then((allUsers) => {
       userTrackerApi.getAllJobs().then((allJobs) => {
+        console.log(currentUser)
         res.render('createschedule', {currentUser, allUsers, allJobs})
       })
     })
@@ -77,27 +79,40 @@ userTrackerRouter.get('/dashboard/create/:id', (req,res) => {
 })
 
 // create schedule
-userTrackerRouter.post('/schedule/create', (req,res) => {
+userTrackerRouter.post('/schedule/create/:userid', (req,res) => {
   userTrackerApi.addNewSchedule(req.body).then((newSchedule) => {
-    userTrackerApi.getAdmin(true).then((currentUser) => {
-      res.render('schedule', {newSchedule, currentUser})
+    userTrackerApi.getUser(req.params.userid).then((currentUser) => {
+      userTrackerApi.getUser(newSchedule.scheduledTo).then((scheduledUser) => {
+        res.render('schedule', {newSchedule, currentUser, scheduledUser})
+      })
     })
   })
 })
 
 // edit schedule screen
-userTrackerRouter.get('/schedule/edit/:id', (req, res) => {
+userTrackerRouter.get('/schedule/edit/:userid/:id', (req, res) => {
   userTrackerApi.getSchedule(req.params.id).then((schedule) => {
     userTrackerApi.getAllUsers().then((allUsers) => {
-      res.render('editschedule', {schedule, allUsers, User})
+      userTrackerApi.getUser(req.params.userid).then((currentUser) => {
+        res.render('editschedule', {schedule, allUsers, currentUser})
+      })
+    })
+  })
+})
+
+// edit schedule
+userTrackerRouter.put('/schedule/edit/:userid/:id', (req,res) => {
+  userTrackerApi.updateSchedule(req.params.id, req.body).then((updateSchedule) => {
+    userTrackerApi.getUser(req.params.userid).then((currentUser) => {
+      res.redirect(`/dashboard/${req.params.userid}`)
     })
   })
 })
 
 // delete schedule
-userTrackerRouter.delete('/schedule/delete/:id', (req,res) => {
+userTrackerRouter.delete('/schedule/delete/:userid/:id', (req,res) => {
   userTrackerApi.deleteSchedule(req.params.id).then((deletedSchedule) => {
-      userTrackerApi.getAdmin(true).then((currentUser) => {
+      userTrackerApi.getUser(req.params.userid).then((currentUser) => {
         res.redirect(`/dashboard/${currentUser._id}`)
       })
   })
@@ -122,33 +137,38 @@ userTrackerRouter.get('/dashboard/create-job/:id', (req,res) => {
 })
 
 // create job
-userTrackerRouter.post('/job/create', (req,res) => {
+userTrackerRouter.post('/job/create/:userid', (req,res) => {
   userTrackerApi.addNewJob(req.body).then((newJob) => {
-    userTrackerApi.getAdmin(true).then((currentUser) => {
+    userTrackerApi.getUser(req.params.userid).then((currentUser) => {
       res.render('job', {newJob, currentUser})
     })
   })
 })
 
 // edit job screen
-userTrackerRouter.get('/job/edit/:id', (req, res) => {
+userTrackerRouter.get('/job/edit/:userid/:id', (req, res) => {
   userTrackerApi.getJob(req.params.id).then((job) => {
-    res.render('editjob', {job, User})
+    userTrackerApi.getUser(req.params.userid).then((currentUser) => {
+      res.render('editjob', {job, currentUser})
+    })
   })
 })
 
 // edit job
-userTrackerRouter.put('/job/:id', (req,res) => {
+userTrackerRouter.put('/job/:userid/:id', (req,res) => {
   userTrackerApi.updateJob(req.params.id, req.body).then((updatejob) => {
-    console.log(`current user id: ${User._id}`)
-    res.redirect(`/dashboard/${User._id}`)
+    userTrackerApi.getUser(req.params.userid).then((currentUser) => {
+      res.redirect(`/dashboard/${currentUser._id}`)
+    })
   })
 })
 
 // delete job
-userTrackerRouter.delete('/job/delete/:id', (req,res) => {
+userTrackerRouter.delete('/job/delete/:userid/:id', (req,res) => {
   userTrackerApi.deleteJob(req.params.id).then((deletedJob) => {
-    res.redirect(`/dashboard/view-jobs/${User._id}`)  
+    userTrackerApi.getUser(req.params.userid).then((currentUser) => {
+      res.redirect(`/dashboard/view-jobs/${currentUser._id}`)  
+    })
   })
 })
 
