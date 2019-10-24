@@ -5,7 +5,7 @@
 </div>
 <div class="profile form shadow">
   <h3>Current Job</h3>
-  <form method="POST" action="/job/{{job._id}}?_method=PUT">
+  <form method="POST" action="/job/{{currentUser._id}}/{{job._id}}?_method=PUT">
     <h4>Job</h4>
     <input type="text" name="job" required="true" value="{{job.job}}"/>
     <h4>Description</h4>

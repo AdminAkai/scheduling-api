@@ -43,6 +43,10 @@ const SchedSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  userOwner: {
+    type: String,
+    required: true,
+  },
   scheduledBy: mongoose.Types.ObjectId,
   scheduledTo: mongoose.Types.ObjectId,
 })

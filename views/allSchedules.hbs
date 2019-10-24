@@ -27,13 +27,13 @@
                     <h4>Date Scheduled:</h4>
                     <p class="subtext">{{dateScheduled}}</p>
                     <h4>Scheduled By:</h4>
-                    <p class="subtext">{{scheduledBy}}</p>
+                    <p class="subtext">{{userOwner}}</p>
                     <h4>Scheduled To:</h4>
                     <p class="subtext">{{scheduledTo}}</p>
-                    <a href="/schedule/edit/{{scheduledBy}}/{{_id}}">
+                    <a href="/schedule/edit/{{../currentUser._id}}/{{_id}}">
                         <button class="submit">Edit Schedule</button>
                     </a>
-                    <form method="POST" action="/schedule/delete/{{scheduledBy}}/{{_id}}?_method=DELETE">
+                    <form method="POST" action="/schedule/delete/{{../currentUser._id}}/{{_id}}?_method=DELETE">
                         <input type="submit" value="Delete Schedule" class="submit"/>
                     </form>
                     </a>

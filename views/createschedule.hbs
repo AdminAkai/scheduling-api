@@ -12,6 +12,7 @@
   <input type="date" min="" max="" id="datePicker" name="dateScheduled" required="true"/>
   <h4>Scheduled by:</h4>
   <p>{{currentUser.username}}</p>
+  <input type="text" name="userOwner" required="true" value="{{currentUser.username}}" readonly class="hide"/>
   <input type="text" name="scheduledBy" required="true" value="{{currentUser._id}}" readonly class="hide"/>
   <h4>Scheduled to:</h4>
   <select name="scheduledTo" required="true">

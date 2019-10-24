@@ -28,7 +28,6 @@ userTrackerRouter.get('/dashboard/:id', (req,res) => {
     userTrackerApi.getUserSchedules(req.params.id).then((currentDashboard) => {
       userTrackerApi.getUser(req.params.id).then((currentUser) => {
         if (currentUser.isAdmin) {
-          console.log(currentUser)
           res.render('allSchedules', {allSchedules, currentUser})
         } else {
           res.render('dashboard', {currentDashboard, currentUser})
@@ -71,7 +70,6 @@ userTrackerRouter.get('/dashboard/create/:userid', (req,res) => {
   userTrackerApi.getUser(req.params.userid).then((currentUser) => {
     userTrackerApi.getAllUsers().then((allUsers) => {
       userTrackerApi.getAllJobs().then((allJobs) => {
-        console.log(currentUser)
         res.render('createschedule', {currentUser, allUsers, allJobs})
       })
     })
@@ -122,7 +120,7 @@ userTrackerRouter.delete('/schedule/delete/:userid/:id', (req,res) => {
 userTrackerRouter.get('/dashboard/view-jobs/:id', (req,res) => {
   userTrackerApi.getAllJobs().then((allJobs) => {
     userTrackerApi.getUser(req.params.id).then((currentUser) => {
-        res.render('alljobs', {allJobs, currentUser})
+      res.render('alljobs', {allJobs, currentUser})
     })
   })
 })
