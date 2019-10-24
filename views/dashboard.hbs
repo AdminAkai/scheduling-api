@@ -18,10 +18,14 @@
   {{/if}}
   </div>
   <div class="options">
+    {{#if currentUser.isAdmin}}
+    <a href="/dashboard/{{currentUser._id}}">
+      <button class="button">Back to Dashboard</button>
+    </a>
+    {{/if}}
     <a href="/users/edit/{{currentUser._id}}">
       <button class="button">Edit Profile</button>
     </a>
-
     <a href="/">
         <button class="button">Logout</button>
     </a>

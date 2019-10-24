@@ -22,6 +22,17 @@ userTrackerRouter.post('/dashboard', (req, res) => {
   })
 })
 
+// create schedule
+userTrackerRouter.post('/schedule/create/:userid', (req,res) => {
+  userTrackerApi.addNewSchedule(req.body).then((newSchedule) => {
+    userTrackerApi.getUser(req.params.userid).then((currentUser) => {
+      userTrackerApi.getUser(newSchedule.scheduledTo).then((scheduledUser) => {
+        res.render('schedule', {newSchedule, currentUser, scheduledUser})
+      })
+    })
+  })
+})
+
 // display dashboard depending on user
 userTrackerRouter.get('/dashboard/:id', (req,res) => {
   userTrackerApi.getAllSchedules().then((allSchedules) => {
@@ -74,23 +85,23 @@ userTrackerRouter.get('/dashboard/view-users/:id', (req,res) => {
   })
 })
 
+// display dashboard depending on users
+userTrackerRouter.get('/dashboard/myschedules/:id', (req,res) => {
+  userTrackerApi.getAllSchedules().then((allSchedules) => {
+    userTrackerApi.getUserSchedules(req.params.id).then((currentDashboard) => {
+      userTrackerApi.getUser(req.params.id).then((currentUser) => {
+          res.render('dashboard', {currentDashboard, currentUser})
+      })
+    })
+  })
+})
+
 // create schedule screen
 userTrackerRouter.get('/dashboard/create/:userid', (req,res) => {
   userTrackerApi.getUser(req.params.userid).then((currentUser) => {
     userTrackerApi.getAllUsers().then((allUsers) => {
       userTrackerApi.getAllJobs().then((allJobs) => {
         res.render('createschedule', {currentUser, allUsers, allJobs})
-      })
-    })
-  })
-})
-
-// create schedule
-userTrackerRouter.post('/schedule/create/:userid', (req,res) => {
-  userTrackerApi.addNewSchedule(req.body).then((newSchedule) => {
-    userTrackerApi.getUser(req.params.userid).then((currentUser) => {
-      userTrackerApi.getUser(newSchedule.scheduledTo).then((scheduledUser) => {
-        res.render('schedule', {newSchedule, currentUser, scheduledUser})
       })
     })
   })
