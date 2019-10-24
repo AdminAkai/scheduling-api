@@ -168,6 +168,10 @@ body {
     margin-top: 10px;
 }
 
+.edit-schedule {
+    margin-top: 20vh;
+}
+
 .delete-button {
     margin-top: -20px;
 }

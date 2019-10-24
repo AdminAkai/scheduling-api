@@ -156,7 +156,7 @@ userTrackerRouter.get('/job/edit/:userid/:id', (req, res) => {
 userTrackerRouter.put('/job/:userid/:id', (req,res) => {
   userTrackerApi.updateJob(req.params.id, req.body).then((updatejob) => {
     userTrackerApi.getUser(req.params.userid).then((currentUser) => {
-      res.redirect(`/dashboard/${currentUser._id}`)
+      res.redirect(`/dashboard/view-jobs/${currentUser._id}`)
     })
   })
 })
