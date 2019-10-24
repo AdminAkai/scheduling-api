@@ -23,6 +23,23 @@ body {
     flex-direction: row;
 }
 
+.default-none {
+    font-size: 75px;
+    color: #ffffff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button {
+    background: rgb(255, 255, 255);
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 2px 2px 2px rgb(83, 83, 83);
+    text-shadow:none;
+    font-size: 12px;
+}
+
 .hide {
     visibility: hidden;
  }
@@ -120,9 +137,9 @@ body {
 }
 
 .animated {
-    animation-duration: 3s;
+    animation-duration: 0.8s;
     animation-fill-mode: both;
-    -webkit-animation-duration: 3s;
+    -webkit-animation-duration: 0.8s;
     -webkit-animation-fill-mode: both;
 }
 
@@ -141,3 +158,8 @@ body {
     -moz-box-shadow: 7px 11px 4px 0px rgba(143,133,143,0.5);
     box-shadow: 7px 11px 4px 0px rgba(143,133,143,0.5);
 }
+
+.text-shadow {
+    text-shadow: 2px 2px #525151;
+}
+
