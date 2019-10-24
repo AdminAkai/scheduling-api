@@ -1,8 +1,8 @@
 # Wireframe
-![] (images/Wireframe.jpg)
+![] (./images/Wireframe.jpg)
 
 # ERD (Entity Relationship Diagram)
-![] (images/ERD.jpg)
+![] (./images/ERD.jpg)
 
 # Project Board
 https://trello.com/b/5YRgEn33/scheduling-api
