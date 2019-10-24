@@ -18,9 +18,25 @@ body {
     background-color: #00a2ff;
 }
 
+.all-jobs {
+    display: flex;
+    flex-direction: row;
+    width: 98%;
+    height: 98%;
+}
+
 .job-board {
     display: flex;
     flex-direction: row;
+    margin-top: 20vh;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.jobs {
+    display: flex;
+    margin-left: 40px;
+    width: 200px;
 }
 
 .default-none {
