@@ -32,12 +32,21 @@ body {
 }
 
 .button {
-    background: rgb(255, 255, 255);
-    border: 1px solid #eee;
+    background: #ffffff;
+    border: 1px solid #ffffff;
     border-radius: 20px;
     box-shadow: 2px 2px 2px rgb(83, 83, 83);
     text-shadow:none;
-    font-size: 12px;
+    font-size: 16px;
+    margin: 10px;
+    padding: 10px;
+    font-weight: 550;
+}
+
+.button:hover {
+    background: rgba(0, 247, 255, 0.5);
+    border: 1px solid rgba(0, 247, 255, 0.5);
+
 }
 
 .hide {
@@ -49,6 +58,10 @@ body {
     flex-direction: row;
     width: 98%;
     height: 98%;
+}
+
+.schedule {
+    margin-left: 50px;
 }
 
 .schedular {
@@ -107,11 +120,22 @@ body {
 .submit {
     margin-top: 20px;
     margin-bottom: 20px;
+    border: 1px solid #ffffff;
+    font-size: 14px;
+    padding: 7px;
+}
+
+.submit:hover {
+    background: rgba(0, 247, 255, 0.5);
+    border: 1px solid rgba(0, 247, 255, 0.5);
 }
 
 .dashboard {
     display: flex;
-    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: row;
+    margin-top: 20vh;
 }
 
 @keyframes fadeInUp {
