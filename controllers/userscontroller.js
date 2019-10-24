@@ -65,6 +65,15 @@ userTrackerRouter.delete('/users/delete/:id', (req,res) => {
   })
 })
 
+// display users  
+userTrackerRouter.get('/dashboard/view-users/:id', (req,res) => {
+  userTrackerApi.getAllUsers().then((allUsers) => {
+    userTrackerApi.getUser(req.params.id).then((currentUser) => {
+      res.render('allusers', {allUsers, currentUser})
+    })
+  })
+})
+
 // create schedule screen
 userTrackerRouter.get('/dashboard/create/:userid', (req,res) => {
   userTrackerApi.getUser(req.params.userid).then((currentUser) => {
