@@ -5,15 +5,15 @@
 </div>
 <div class="profile form shadow">
   <h3>Current Job</h3>
-  <form method="POST" action="/job/edit/{{_id}}?_method=PUT">
+  <form method="POST" action="/job/{{job._id}}?_method=PUT">
     <h4>Job</h4>
-    <input type="text" name="job" required="true" value="{{job}}"/>
+    <input type="text" name="job" required="true" value="{{job.job}}"/>
     <h4>Description</h4>
-    <textarea name="description" required="true" rows="5" cols="50" value="{{description}}"/></textarea>
+    <textarea name="description" required="true" rows="5" cols="50" value="{{job.description}}"/></textarea>
     <input class="submit edit-button" type="submit" value="Edit Job">
   </form>
 
-  <form c;ass="delete-button" action="/job/delete/{{_id}}?_method=DELETE" method="POST">
+  <form class="delete-button" action="/job/delete/{{job._id}}?_method=DELETE" method="POST">
     <input class="submit" type="submit" value="Delete Job"/>
   </form>
 </div>

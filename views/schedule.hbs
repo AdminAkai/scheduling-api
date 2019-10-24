@@ -1,28 +1,25 @@
-  <div class="schedule">
-    <h4>Description</h4>
-    <p>{{newSchedule.description}}</p>
-    <h4>Date Scheduled</h4>
-    <p>{{newSchedule.dateScheduled}}</p>
-    <h4>Scheduled By:</h4>
-    <p>{{newSchedule.scheduledBy.username}}</p> 
-    <h4>Scheduled To:</h4>
-    <p>{{newSchedule.scheduledTo.username}}</p>
-    <a href="/">
-    <button>Logout</button>
-    </a>        
-    <div class="options">
-    <a href="/schedule/{{newSchedule._id}}">
-        <button>Edit Schedule</button>
-    </a>
-    </div>
-
-    <a href="/dashboard/{{newSchedule.scheduledBy}}">
-        <button>Back to Dashboard</button>
-    </a>
-
-    <form action="/schedule/delete/{{newSchedule._id}}?_method=DELETE" method="POST">
-        <input type="submit" value="Delete Schedule"/>
-    </form>
-    </div>
-  </div>
+<div class="options">
+  <a href="/dashboard/{{newSchedule.scheduledBy}}">
+    <button class="button">Back to Dashboard</button>
+</a>
+</div>      
+<div class="schedule form animated animatedFadeInUp fadeInUp shadow">
+  <h4>Job:</h4>
+  <p class="subtext">{{newSchedule.job}}</p>
+  <h4>Additional Notes:</h4>
+  <p class="subtext">{{newSchedule.description}}</p>
+  <h4>Date Scheduled:</h4>
+  <p class="subtext">{{newSchedule.dateScheduled}}</p>
+  <h4>Scheduled By:</h4>
+  <p class="subtext">{{newSchedule.scheduledBy}}</p>
+  <h4>Scheduled To:</h4>
+  <p class="subtext">{{newSchedule.scheduledTo}}</p>
+  <a href="/schedule/edit/{{_id}}">
+    <button class="submit">Edit Schedule</button>
+  </a>
+  <form method="POST" action="/schedule/delete/{{_id}}?_method=DELETE">
+    <input type="submit" value="Delete Schedule" class="submit"/>
+  </form>
+</a>
+</div>
 

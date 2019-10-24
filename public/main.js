@@ -13,3 +13,8 @@ try {
 catch(err) {
     console.log("edit field not generated yet")
 }
+
+window.onerror = function myErrorHandler(errorMsg, url, lineNumber) {
+    alert("Error occured: Session terminated, return to login");//or any message
+    return false;
+}

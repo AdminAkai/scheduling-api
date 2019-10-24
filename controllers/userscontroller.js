@@ -88,7 +88,9 @@ userTrackerRouter.post('/schedule/create', (req,res) => {
 // edit schedule screen
 userTrackerRouter.get('/schedule/edit/:id', (req, res) => {
   userTrackerApi.getSchedule(req.params.id).then((schedule) => {
-    res.render('editschedule', schedule)
+    userTrackerApi.getAllUsers().then((allUsers) => {
+      res.render('editschedule', {schedule, allUsers, User})
+    })
   })
 })
 
@@ -146,7 +148,7 @@ userTrackerRouter.put('/job/:id', (req,res) => {
 // delete job
 userTrackerRouter.delete('/job/delete/:id', (req,res) => {
   userTrackerApi.deleteJob(req.params.id).then((deletedJob) => {
-    res.redirect(`/dashboard/${User._id}`)  
+    res.redirect(`/dashboard/view-jobs/${User._id}`)  
   })
 })
 

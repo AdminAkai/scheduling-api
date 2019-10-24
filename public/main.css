@@ -39,6 +39,13 @@ body {
     width: 200px;
 }
 
+.job {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+}
+
 .default-none {
     font-size: 75px;
     color: #ffffff;

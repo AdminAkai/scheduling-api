@@ -15,7 +15,7 @@
   <input type="text" name="scheduledBy" required="true" value="{{currentUser._id}}" readonly class="hide"/>
   <h4>Scheduled to:</h4>
   <select name="scheduledTo" required="true">
-    {{#each allUsers}}
+    {{#each allUsers}}  
       <option value="{{_id}}">{{username}}</option>
     {{/each}}
   </select>

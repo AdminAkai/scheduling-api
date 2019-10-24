@@ -1,24 +1,21 @@
-  <div class="job">
-    <h4>Job</h4>
-    <p>{{newJob.job}}</p>
-    <h4>Description</h4>
-    <p>{{newJob.description}}</p>
-    <a href="/">
-    <button>Logout</button>
-    </a>        
-    <div class="options">
-    <a href="/job/edit/{{newJob._id}}">
-        <button>Edit Job</button>
-    </a>
-    </div>
-
-    <a href="/dashboard/{{currentUser._id}}">
-        <button>Back to Dashboard</button>
-    </a>
-
-    <form action="/job/delete/{{newJob._id}}?_method=DELETE" method="POST">
-        <input type="submit" value="Delete Job"/>
-    </form>
-    </div>
-  </div>
+<div class="options">
+  <a href="/dashboard/{{newSchedule.scheduledBy}}">
+    <button class="button">Back to Dashboard</button>
+  </a>
+  <a href="/">
+    <button class="button">Logout</button>
+  </a>      
+</div>
+<div class="job form animated animatedFadeInUp fadeInUp shadow">
+  <h4>Job</h4>
+  <p class="subtext">{{newJob.job}}</p>
+  <h4>Description</h4>
+  <p class="subtext">{{newJob.description}}</p>
+  <a href="/job/edit/{{newJob._id}}">
+    <button class="submit">Edit Job</button>
+  </a>
+  <form action="/job/delete/{{newJob._id}}?_method=DELETE" method="POST">
+    <input class="submit" type="submit" value="Delete Job"/>
+  </form>
+</div>
 
