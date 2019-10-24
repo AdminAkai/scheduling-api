@@ -1,7 +1,7 @@
-<div class="dashboard">
+<div class="user-dashboard">
 {{#if currentDashboard}}
   {{#each currentDashboard}}
-  <div class="schedule">
+  <div class="schedule form animated animatedFadeInUp fadeInUp shadow">
     <h4>Description</h4>
     <p>{{description}}</p>
     <h4>Date Scheduled</h4>
@@ -13,7 +13,7 @@
   </div>
   {{/each}}
 {{else}}
-<h4>Nothing scheduled</h4>
+  <h1 class="default-none text-shadow">Nothing scheduled</h1>
 {{/if}}
 
 <a href="/users/edit/{{currentUser._id}}">

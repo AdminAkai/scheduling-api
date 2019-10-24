@@ -76,6 +76,13 @@ body {
     height: 98%;
 }
 
+.user-dashboard {
+    display: flex;
+    flex-direction: row;
+    width: 98%;
+    height: 98%;
+}
+
 .schedule {
     margin-left: 50px;
 }
@@ -216,4 +223,3 @@ body {
 .text-shadow {
     text-shadow: 2px 2px #525151;
 }
-
