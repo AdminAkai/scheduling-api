@@ -101,6 +101,20 @@ body {
     margin-top: -20px;
 }
 
+.create-job {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20vh;
+}
+
+.create-schedule {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10vh;
+}
+
 .sign-up {
     margin: 250px 20px 20px 100px;
 }
