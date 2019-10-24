@@ -14,7 +14,6 @@ userTrackerRouter.get('/', (req,res) => {
 userTrackerRouter.post('/dashboard', (req, res) => {
   userTrackerApi.verifyAuth(req.body.username, req.body.password).then((currentUser) => {
     User = currentUser
-    console.log(`The current user is: ${User}`)
     res.redirect(`/dashboard/${User._id}`)
   }).catch((err) => {
     console.error(err.message)
@@ -25,7 +24,6 @@ userTrackerRouter.post('/dashboard', (req, res) => {
 
 // create user
 userTrackerRouter.post('/users/create', (req,res) => {
-  console.log(req.body)
   userTrackerApi.addNewUser(req.body).then((newuser) => {
     res.redirect('/')
   })
@@ -57,9 +55,6 @@ userTrackerRouter.get('/dashboard/:id', (req,res) => {
   userTrackerApi.getAllSchedules().then((allSchedules) => {
     userTrackerApi.getUserSchedules(req.params.id).then((currentDashboard) => {
       userTrackerApi.getUser(req.params.id).then((currentUser) => {
-        console.log(`\nthese are current schedules: ${allSchedules}\n`)
-        console.log(`\nthis is the current dashboard: ${currentDashboard}\n`)
-        console.log(`\nthis is the current user: ${currentUser}\n`)
         if (currentUser.isAdmin) {
           res.render('allSchedules', {allSchedules, currentUser})
         } else {
@@ -75,8 +70,6 @@ userTrackerRouter.get('/dashboard/create/:id', (req,res) => {
   userTrackerApi.getUser(req.params.id).then((currentUser) => {
     userTrackerApi.getAllUsers().then((allUsers) => {
       userTrackerApi.getAllJobs().then((allJobs) => {
-        console.log(`\nthis is the current user for create sched: ${currentUser}\n`)
-        console.log(`\nthese are all users for create sched: ${allUsers}\n`)
         res.render('createschedule', {currentUser, allUsers, allJobs})
       })
     })
@@ -94,15 +87,8 @@ userTrackerRouter.post('/schedule/create', (req,res) => {
 
 // edit schedule screen
 userTrackerRouter.get('/schedule/edit/:id', (req, res) => {
-  userTrackerApi.getSchedule(req.params.id).then((job) => {
-    res.render('editjob', job)
-  })
-})
-
-// edit job
-userTrackerRouter.put('/job/:id', (req,res) => {
-  userTrackerApi.updateSchedule(req.params.id, req.body).then((updatejob) => {
-    res.redirect(`/dashboard/${User._id}`)
+  userTrackerApi.getSchedule(req.params.id).then((schedule) => {
+    res.render('editschedule', schedule)
   })
 })
 
@@ -110,9 +96,6 @@ userTrackerRouter.put('/job/:id', (req,res) => {
 userTrackerRouter.delete('/schedule/delete/:id', (req,res) => {
   userTrackerApi.deleteSchedule(req.params.id).then((deletedSchedule) => {
       userTrackerApi.getAdmin(true).then((currentUser) => {
-        console.log(`\nrequest parameters for delete: ${req.params.id}\n`)
-        console.log(`\nschedule that was deleted: ${deletedSchedule}\n`)
-        console.log(`\ncurrent user that did deletion: ${currentUser}\n`)
         res.redirect(`/dashboard/${currentUser._id}`)
       })
   })
@@ -131,8 +114,6 @@ userTrackerRouter.get('/dashboard/view-jobs/:id', (req,res) => {
 userTrackerRouter.get('/dashboard/create-job/:id', (req,res) => {
   userTrackerApi.getUser(req.params.id).then((currentUser) => {
     userTrackerApi.getAllUsers().then((allUsers) => {
-      console.log(`\nthis is the current user for create sched: ${currentUser}\n`)
-      console.log(`\nthese are all users for create sched: ${allUsers}\n`)
       res.render('createjob', {currentUser, allUsers})
     })
   })
@@ -150,13 +131,14 @@ userTrackerRouter.post('/job/create', (req,res) => {
 // edit job screen
 userTrackerRouter.get('/job/edit/:id', (req, res) => {
   userTrackerApi.getJob(req.params.id).then((job) => {
-    res.render('editjob', job)
+    res.render('editjob', {job, User})
   })
 })
 
 // edit job
 userTrackerRouter.put('/job/:id', (req,res) => {
   userTrackerApi.updateJob(req.params.id, req.body).then((updatejob) => {
+    console.log(`current user id: ${User._id}`)
     res.redirect(`/dashboard/${User._id}`)
   })
 })

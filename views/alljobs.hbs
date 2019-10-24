@@ -19,8 +19,8 @@
                     <p>{{job}}</p>
                     <h4>Description</h4>
                     <p>{{description}}</p>
-                    <a href="/jobs/{{_id}}">
-                        <button>Edit Jobs</button>
+                    <a href="/jobs/edit/{{_id}}">
+                        <button class="submit">Edit Jobs</button>
                     </a>
                     <form method="POST" action="/job/delete/{{_id}}?_method=DELETE">
                         <input type="submit" value="Delete Job" class="submit"/>
@@ -29,7 +29,7 @@
                 </div>
             {{/each}}
         {{else}}
-        <h4>No Jobs</h4>
+        <h4 class="default-none text-shadow">No Jobs</h4>
         {{/if}}
     </div>
 </div>
