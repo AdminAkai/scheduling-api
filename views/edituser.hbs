@@ -1,19 +1,21 @@
-<h3>Current Profile</h3>
+<div class="options">
+  <a href="/dashboard/{{_id}}">
+      <button class="button">Return to Dashboard</button>
+  </a>  
+</div>
+<div class="profile form shadow">
+  <h3>Current Profile</h3>
+  <form method="POST" action="/users/edit/{{_id}}?_method=PUT">
+    <h4 class="edit-profile">Username</h4>
+    <input type="text" name="username" required="true"/>
+    <h4 class="edit-profile">Email</h4>
+    <input  type="text" name="email" required="true" "{{email}}"/>
+    <h4 class="edit-profile">Change Password</h4>
+    <input type="password" name="password" required="true"/>
+    <input class="submit edit-button" type="submit" value="Edit Profile">
+  </form>
+  <form class="delete-button" action="/users/delete/{{_id}}?_method=DELETE" method="POST">
+    <input class="submit" type="submit" value="Delete Account"/>
+  </form>
 
-<form method="POST" action="/users/edit/{{_id}}?_method=PUT">
-  <h4>Username</h4>
-  <input type="text" name="username" required="true"/>
-  <h4>Email</h4>
-  <input type="text" name="email" required="true" "{{email}}"/>
-  <h4>Change Password</h4>
-  <input type="password" name="password" required="true"/>
-  <input type="submit" value="Edit Profile">
-</form>
-
-<form action="/users/delete/{{_id}}?_method=DELETE" method="POST">
-  <input type="submit" value="Delete Account"/>
-</form>
-
-<a href="/dashboard/{{_id}}">
-    <button>Return to Dashboard</button>
-</a>
+</div>
