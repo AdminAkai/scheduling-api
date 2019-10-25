@@ -17,7 +17,7 @@ userTrackerRouter.post('/dashboard', (req, res) => {
     res.redirect(`/dashboard/${User._id}`)
   }).catch((err) => {
     console.error(err.message)
-  }).then((resolved) => {
+  }).then(() => {
     res.redirect('/')
   })
 })
@@ -37,12 +37,14 @@ userTrackerRouter.post('/schedule/create/:userid', (req,res) => {
 userTrackerRouter.get('/dashboard/:id', (req,res) => {
   userTrackerApi.getAllSchedules().then((allSchedules) => {
     userTrackerApi.getUserSchedules(req.params.id).then((currentDashboard) => {
-      userTrackerApi.getUser(req.params.id).then((currentUser) => {
-        if (currentUser.isAdmin) {
-          res.render('allSchedules', {allSchedules, currentUser})
-        } else {
-          res.render('dashboard', {currentDashboard, currentUser})
-        }
+      userTrackerApi.getAllUsers().then((allUsers) => {
+        userTrackerApi.getUser(req.params.id).then((currentUser) => {
+          if (currentUser.isAdmin) {
+            res.render('allSchedules', {allSchedules, currentUser, allUsers})
+          } else {
+            res.render('dashboard', {currentDashboard, currentUser})
+          }
+        })
       })
     })
   })
@@ -85,13 +87,20 @@ userTrackerRouter.get('/dashboard/view-users/:id', (req,res) => {
   })
 })
 
-// display dashboard depending on users
+// display schedules depending on users
 userTrackerRouter.get('/dashboard/myschedules/:id', (req,res) => {
-  userTrackerApi.getAllSchedules().then((allSchedules) => {
     userTrackerApi.getUserSchedules(req.params.id).then((currentDashboard) => {
       userTrackerApi.getUser(req.params.id).then((currentUser) => {
-          res.render('dashboard', {currentDashboard, currentUser})
-      })
+        res.render('dashboard', {currentDashboard, currentUser})
+    })
+  })
+})
+
+// get schedules
+userTrackerRouter.post('/dashboard/allschedules/:id', (req,res) => {
+  userTrackerApi.getUser(req.params.id).then((currentUser) => {
+    userTrackerApi.getUserSchedules(req.body.id).then((allSchedules) => {
+      res.render('dashboard', {allSchedules, currentUser})
     })
   })
 })

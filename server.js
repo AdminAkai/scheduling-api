@@ -3,6 +3,8 @@ const express = require('express')
 const app = express()
 const methodOverride = require('method-override')
 
+const bodyParser = require('body-parser');
+app.use(bodyParser.urlencoded({ extended: true }));
 
 const { userTrackerRouter } = require('./controllers/userscontroller.js')
 

@@ -18,6 +18,17 @@ body {
     background-color: #00a2ff;
 }
 
+.options .get-user-schedules {
+    display: flex;
+    justify-content: flex-start;
+    width: 50%;
+}
+
+.get-user-schedules select {
+    padding: 2px 5px 2px 5px;
+    font-size: 17px;
+}
+
 .all-jobs {
     display: flex;
     flex-direction: row;
