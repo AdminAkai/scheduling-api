@@ -19,6 +19,7 @@
                     <p>{{job}}</p>
                     <h4>Description</h4>
                     <p>{{description}}</p>
+                    {{#if ../currentUser.isAdmin}}
                     <a href="/job/edit/{{../currentUser._id}}/{{_id}}">
                         <button class="submit">Edit Jobs</button>
                     </a>
@@ -26,6 +27,7 @@
                         <input type="submit" value="Delete Job" class="submit"/>
                     </form>
                     </a>
+                    {{/if}}
                 </div>
             {{/each}}
         {{else}}
