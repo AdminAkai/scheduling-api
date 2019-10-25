@@ -1,0 +1,34 @@
+<div class="user-dashboard">
+  <div class="dashboard">
+  {{#if allSchedules}}
+    {{#each allSchedules}}
+    <div class="schedule form animated animatedFadeInUp fadeInUp shadow">
+      <h4>Description</h4>
+      <p>{{description}}</p>
+      <h4>Date Scheduled</h4>
+      <p>{{dateScheduled}}</p>
+      <h4>Scheduled By:</h4>
+      <p>{{userOwner}}</p>
+      <h4>Scheduled To:</h4>
+      <p>{{../assignedUser.username}}</p>
+    </div>
+    {{/each}}
+  {{else}}
+    <h1 class="default-none text-shadow">Nothing scheduled</h1>
+  {{/if}}
+  </div>
+  <div class="options">
+    {{#if currentUser.isAdmin}}
+    <a href="/dashboard/{{currentUser._id}}">
+      <button class="button">Back to Dashboard</button>
+    </a>
+    {{/if}}
+    <a href="/users/edit/{{currentUser._id}}">
+      <button class="button">Edit Profile</button>
+    </a>
+    <a href="/">
+        <button class="button">Logout</button>
+    </a>
+  </div>
+</div>
+

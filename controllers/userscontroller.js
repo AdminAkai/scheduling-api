@@ -100,7 +100,10 @@ userTrackerRouter.get('/dashboard/myschedules/:id', (req,res) => {
 userTrackerRouter.post('/dashboard/allschedules/:id', (req,res) => {
   userTrackerApi.getUser(req.params.id).then((currentUser) => {
     userTrackerApi.getUserSchedules(req.body.id).then((allSchedules) => {
-      res.render('dashboard', {allSchedules, currentUser})
+      userTrackerApi.getUser(req.body.id).then((assignedUser) => {
+        console.log(req.body.id)
+        res.render('userschedules', {allSchedules, currentUser, assignedUser})
+      })
     })
   })
 })
