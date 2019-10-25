@@ -42,7 +42,7 @@ userTrackerRouter.get('/dashboard/:id', (req,res) => {
           if (currentUser.isAdmin) {
             res.render('allSchedules', {allSchedules, currentUser, allUsers})
           } else {
-            res.render('dashboard', {currentDashboard, currentUser})
+            res.render('dashboard', {allSchedules, currentUser})
           }
         })
       })
