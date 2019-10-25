@@ -3,7 +3,9 @@
   {{#if allSchedules}}
     {{#each allSchedules}}
     <div class="schedule form animated animatedFadeInUp fadeInUp shadow">
-      <h4>Description</h4>
+      <h4>Job:</h4>
+      <p class="subtext">{{job}}</p>
+      <h4>Additional Notes</h4>
       <p>{{description}}</p>
       <h4>Date Scheduled</h4>
       <p>{{dateScheduled}}</p>
@@ -18,6 +20,9 @@
   {{/if}}
   </div>
   <div class="options">
+    <a href="/dashboard/view-jobs/{{currentUser._id}}">
+      <button class="button">View Jobs</button>
+    </a>
     {{#if currentUser.isAdmin}}
     <a href="/dashboard/{{currentUser._id}}">
       <button class="button">Back to Dashboard</button>
