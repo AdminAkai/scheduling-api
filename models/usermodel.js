@@ -57,7 +57,7 @@ const ScheduleCollection = mongoose.model('Schedule', SchedSchema)
 
 //user model functions
 const getAllUsers = () => {
-  return UserCollection.find()
+  return UserCollection.find({}).sort({username: 'ascending'})
 }
 
 const getAdmin = (admin) => {
@@ -115,11 +115,11 @@ const deleteJob = (id) => {
 
 //schedule model functions
 const getAllSchedules = () => {
-  return ScheduleCollection.find()
+  return ScheduleCollection.find({}).sort({dateScheduled: 'ascending'}) 
 }
 
 const getUserSchedules = (id) => {
-  return ScheduleCollection.find({scheduledTo: id})
+  return ScheduleCollection.find({scheduledTo: id}).sort({dateScheduled: 'ascending'})
 }
 
 const getSchedule = (id) => {
