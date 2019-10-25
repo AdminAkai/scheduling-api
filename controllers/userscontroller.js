@@ -89,9 +89,9 @@ userTrackerRouter.get('/dashboard/view-users/:id', (req,res) => {
 
 // display schedules depending on users
 userTrackerRouter.get('/dashboard/myschedules/:id', (req,res) => {
-    userTrackerApi.getUserSchedules(req.params.id).then((currentDashboard) => {
+    userTrackerApi.getUserSchedules(req.params.id).then((allSchedules) => {
       userTrackerApi.getUser(req.params.id).then((currentUser) => {
-        res.render('dashboard', {currentDashboard, currentUser})
+        res.render('dashboard', {allSchedules, currentUser})
     })
   })
 })
