@@ -31,7 +31,6 @@ body {
 
 .all-jobs {
     display: flex;
-    flex-direction: row;
     width: 98%;
     height: 98%;
 }
@@ -39,13 +38,14 @@ body {
 .job-board {
     display: flex;
     flex-flow: row wrap;
-    margin-top: 20vh;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
+    margin-top: 10vh;
 }
 
 .jobs {
     display: flex;
+    margin-top: 10vh;
     margin-left: 40px;
     width: 200px;
 }
@@ -60,9 +60,9 @@ body {
 .users-board {
     display: flex;
     flex-flow: row wrap;
-    margin-top: 20vh;
+    margin-top: 10vh;
     align-items: flex-start;
-    justify-content: center;
+    justify-content: flex-start;
 }
 
 .user {
@@ -70,6 +70,8 @@ body {
     justify-content: center;
     align-items: center;
     margin-left: 40px;
+    margin-right: 40px;
+    margin-top: 10vh;
 }
 
 .default-none {
@@ -79,6 +81,7 @@ body {
     justify-content: center;
     align-items: center;
     margin-left: 10vw;
+    margin-top: 20vh;
 }
 
 .button {
@@ -120,6 +123,7 @@ body {
 .schedule {
     margin-left: 50px;
     position: relative;
+    margin-top: 20vh;
 }
 
 .single-schedule {
@@ -237,7 +241,6 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
     flex-flow: row wrap;
-    margin-top: 20vh;
 }
 
 @keyframes fadeInUp {
