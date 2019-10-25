@@ -20,13 +20,13 @@
                     <h4>Description</h4>
                     <p>{{description}}</p>
                     {{#if ../currentUser.isAdmin}}
-                    <a href="/job/edit/{{../currentUser._id}}/{{_id}}">
-                        <button class="submit">Edit Jobs</button>
-                    </a>
-                    <form method="POST" action="/job/delete/{{../currentUser._id}}/{{_id}}?_method=DELETE">
-                        <input type="submit" value="Delete Job" class="submit"/>
-                    </form>
-                    </a>
+                        <a href="/job/edit/{{../currentUser._id}}/{{_id}}">
+                            <button class="submit">Edit Jobs</button>
+                        </a>
+                        <form method="POST" action="/job/delete/{{../currentUser._id}}/{{_id}}?_method=DELETE">
+                            <input type="submit" value="Delete Job" class="submit"/>
+                        </form>
+                        </a>
                     {{/if}}
                 </div>
             {{/each}}
